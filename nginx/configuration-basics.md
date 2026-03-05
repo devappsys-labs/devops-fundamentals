@@ -33,12 +33,12 @@ http {
 
 ### Context Hierarchy
 
-```
-main
-  ├── events { }
-  └── http { }
-        └── server { }
-              └── location { }
+```mermaid
+flowchart TD
+    A["main"] --> B["events { }"]
+    A --> C["http { }"]
+    C --> D["server { }"]
+    D --> E["location { }"]
 ```
 
 Each inner context inherits settings from its parent. A directive set in `http {}` applies to all `server {}` blocks within it, unless overridden.

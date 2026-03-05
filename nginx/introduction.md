@@ -20,44 +20,40 @@ As a DevOps engineer, Nginx will be one of your most-used tools. Here's why:
 
 Here's a typical flow when a user visits your website:
 
-```
-User's Browser
-      |
-      v
-   Internet
-      |
-      v
-   Nginx (port 80/443)
-      |
-      ├── Static files? → Serve directly from disk
-      |
-      └── Dynamic request? → Forward to backend (localhost:3000, :8080, etc.)
+```mermaid
+flowchart TD
+    A[User's Browser] --> B[Internet]
+    B --> C[Nginx - port 80/443]
+    C -->|Static files?| D[Serve directly from disk]
+    C -->|Dynamic request?| E[Forward to backend\nlocalhost:3000, :8080, etc.]
 ```
 
 ### Scenario: Static Website (Client-Side Rendered)
 
-```
-Browser → Nginx → /var/www/html/index.html
+```mermaid
+flowchart LR
+    A[Browser] --> B[Nginx] --> C[/var/www/html/index.html]
 ```
 
 Nginx directly serves the HTML, CSS, and JS files. No backend needed.
 
 ### Scenario: Backend API
 
-```
-Browser → Nginx (port 80) → proxy_pass → Node.js app (port 3000)
+```mermaid
+flowchart LR
+    A[Browser] --> B[Nginx\nport 80] -->|proxy_pass| C[Node.js app\nport 3000]
 ```
 
 Nginx receives the request on port 80 and forwards it to your Node.js/Go/Python application running on a local port.
 
 ### Scenario: Full-Stack Application
 
-```
-Browser → Nginx (port 80/443)
-              |
-              ├── /           → Serve React build from /var/www/app/
-              ├── /api/*      → proxy_pass to backend on port 8080
-              └── /static/*   → Serve static assets from /var/www/static/
+```mermaid
+flowchart TD
+    A[Browser] --> B[Nginx - port 80/443]
+    B -->|"/"| C[Serve React build\n/var/www/app/]
+    B -->|"/api/*"| D[proxy_pass to backend\nport 8080]
+    B -->|"/static/*"| E[Serve static assets\n/var/www/static/]
 ```
 
 A single Nginx instance handles both frontend and backend routing.

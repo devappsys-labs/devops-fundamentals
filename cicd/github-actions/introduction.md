@@ -97,8 +97,9 @@ jobs:
 
 The deployment pattern across all our workflows:
 
-```
-Push to main → GitHub Actions runner builds the app → Copies files to your server via SSH
+```mermaid
+flowchart LR
+    A[Push to main] --> B[GitHub Actions runner\nbuilds the app] --> C[Copies files to\nyour server via SSH]
 ```
 
 ### SSH Setup

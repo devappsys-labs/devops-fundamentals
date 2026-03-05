@@ -6,18 +6,23 @@ Examples: Next.js, Nuxt.js, Angular Universal, SvelteKit.
 
 ## How SSR Differs from CSR
 
-```
-CSR: Browser → Nginx → static files → JavaScript renders UI
-
-SSR: Browser → Nginx → Node.js server → generates HTML → sends to browser
+```mermaid
+flowchart LR
+    subgraph CSR
+        A1[Browser] --> B1[Nginx] --> C1[Static files] --> D1[JavaScript\nrenders UI]
+    end
+    subgraph SSR
+        A2[Browser] --> B2[Nginx] --> C2[Node.js server] --> D2[Generates HTML] --> E2[Sends to\nbrowser]
+    end
 ```
 
 The key difference: **SSR apps are running processes**. You need a Node.js server running on the machine, and Nginx acts as a reverse proxy in front of it.
 
 ## Architecture
 
-```
-Internet → Nginx (port 80/443) → proxy_pass → Node.js (port 3000)
+```mermaid
+flowchart LR
+    A[Internet] --> B["Nginx\n(port 80/443)"] -->|proxy_pass| C["Node.js\n(port 3000)"]
 ```
 
 Nginx handles:

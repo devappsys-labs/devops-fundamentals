@@ -19,14 +19,9 @@ Passwords are slow and insecure. Use SSH keys instead.
 
 ### How it works
 
-```
-Your Machine                          Server
-┌──────────┐                    ┌──────────────┐
-│ Private  │───authenticates──→│  Public Key   │
-│   Key    │                    │ (authorized)  │
-│ (secret) │                    │               │
-└──────────┘                    └──────────────┘
-~/.ssh/id_ed25519               ~/.ssh/authorized_keys
+```mermaid
+flowchart LR
+    A["Your Machine\n~/.ssh/id_ed25519\n(Private Key - secret)"] -->|authenticates| B["Server\n~/.ssh/authorized_keys\n(Public Key)"]
 ```
 
 The private key stays on your machine. The public key goes on the server. When you connect, SSH proves you have the private key without ever sending it.
@@ -212,8 +207,9 @@ ssh -L 5433:localhost:5432 deploy@server
 psql -h localhost -p 5433 -U myuser mydb
 ```
 
-```
-Your Machine (localhost:5433) ──SSH──→ Server (localhost:5432)
+```mermaid
+flowchart LR
+    A["Your Machine\nlocalhost:5433"] -->|SSH tunnel| B["Server\nlocalhost:5432"]
 ```
 
 ### Use case: Access a database that's only listening on localhost

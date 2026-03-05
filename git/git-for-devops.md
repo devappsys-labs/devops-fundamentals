@@ -30,12 +30,19 @@ git log --oneline --graph --all                # Visual branch graph
 
 ### Git Flow (Common for teams)
 
-```
-main ─────●─────────────●───────── (production)
-           \           /
-develop ────●───●───●──● ──────── (integration)
-                 \  /
-feature/x ────●──● ───────────── (feature work)
+```mermaid
+gitGraph
+    commit id: "init"
+    branch develop
+    commit id: "dev-1"
+    branch feature/x
+    commit id: "feat-1"
+    commit id: "feat-2"
+    checkout develop
+    merge feature/x id: "merge-feat"
+    commit id: "dev-2"
+    checkout main
+    merge develop id: "release"
 ```
 
 | Branch | Purpose |
@@ -48,10 +55,17 @@ feature/x ────●──● ───────────── (feat
 
 ### Trunk-Based (Simpler, for smaller teams)
 
-```
-main ───●───●───●───●───●───●──── (everything merges here)
-         \     /
-feature ──●───● ──────────────── (short-lived, <1 day)
+```mermaid
+gitGraph
+    commit id: "1"
+    commit id: "2"
+    branch feature
+    commit id: "feat-1"
+    commit id: "feat-2"
+    checkout main
+    merge feature id: "merge"
+    commit id: "3"
+    commit id: "4"
 ```
 
 Everyone works on `main` or short-lived feature branches. Simpler but requires good CI/CD and tests.
@@ -60,10 +74,11 @@ Everyone works on `main` or short-lived feature branches. Simpler but requires g
 
 ### Branch per environment
 
-```
-main        → deploys to production
-staging     → deploys to staging server
-develop     → deploys to dev server
+```mermaid
+flowchart LR
+    A[main] --> B[production]
+    C[staging] --> D[staging server]
+    E[develop] --> F[dev server]
 ```
 
 CI/CD triggers based on which branch received a push:

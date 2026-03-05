@@ -134,12 +134,16 @@ Every file and directory has three permission sets:
 
 ```
 -rwxr-xr-- 1 deploy webapps 4096 Mar 06 10:00 script.sh
-│├──┤├──┤├──┤   │      │
-│ │   │   │    owner  group
-│ │   │   └── Others: read only
-│ │   └────── Group: read + execute
-│ └────────── Owner: read + write + execute
-└──────────── - = file, d = directory, l = symlink
+```
+
+```mermaid
+flowchart LR
+    A["-rwxr-xr--"] --> B["- = file\nd = directory\nl = symlink"]
+    A --> C["rwx\nOwner:\nread + write + execute"]
+    A --> D["r-x\nGroup:\nread + execute"]
+    A --> E["r--\nOthers:\nread only"]
+    F["deploy"] --- G["owner"]
+    H["webapps"] --- I["group"]
 ```
 
 ### Permission values

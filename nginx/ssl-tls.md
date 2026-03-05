@@ -4,8 +4,9 @@ HTTPS encrypts traffic between the browser and your server. In production, this 
 
 ## How It Works
 
-```
-Browser ──HTTPS──> Nginx (terminates SSL) ──HTTP──> Backend (localhost:3000)
+```mermaid
+flowchart LR
+    A[Browser] -->|HTTPS| B[Nginx\nterminates SSL] -->|HTTP| C[Backend\nlocalhost:3000]
 ```
 
 Nginx handles the encryption/decryption. Your backend application doesn't need to know anything about SSL.

@@ -111,10 +111,10 @@ docker run -d \
   myapp
 ```
 
-```
-Internet → Host:3000 → app container → db container (port 5432)
-                                        ↑
-                            Accessed as "db" (DNS name)
+```mermaid
+flowchart LR
+    A[Internet] --> B["Host:3000"] --> C[app container] --> D["db container\nport 5432"]
+    D -.-|"Accessed as 'db'\n(DNS name)"| C
 ```
 
 ### Pattern: Frontend + Backend + Database

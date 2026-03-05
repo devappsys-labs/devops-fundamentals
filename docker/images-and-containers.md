@@ -118,12 +118,9 @@ docker run -d --env-file .env myapp
 
 ### Port mapping explained
 
-```
--p 8080:80
-   ^^^^  ^^
-   host  container
-
-Host port 8080 → Container port 80
+```mermaid
+flowchart LR
+    A["Host port 8080"] -->|"-p 8080:80"| B["Container port 80"]
 ```
 
 - `curl http://localhost:8080` → reaches the container's port 80
@@ -228,12 +225,17 @@ docker stats --no-stream
 
 ### Container lifecycle
 
-```
-Created → Running → Paused → Running → Stopped → Removed
-   ↑         ↑        ↑         ↑          ↑         ↑
- create    start    pause    unpause      stop       rm
-   or       or
-  run      restart
+```mermaid
+stateDiagram-v2
+    [*] --> Created : create / run
+    Created --> Running : start / run
+    Running --> Paused : pause
+    Paused --> Running : unpause
+    Running --> Stopped : stop
+    Running --> Running : restart
+    Stopped --> Running : start / restart
+    Stopped --> Removed : rm
+    Removed --> [*]
 ```
 
 ### Restart policies

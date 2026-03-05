@@ -76,9 +76,14 @@ nc -zv server-ip 80
 
 ### Binding: 0.0.0.0 vs 127.0.0.1
 
-```
-0.0.0.0:3000    → Listens on ALL interfaces (accessible from outside)
-127.0.0.1:3000  → Listens on localhost ONLY (only accessible from the server itself)
+```mermaid
+flowchart LR
+    subgraph "0.0.0.0:3000"
+        A[All interfaces] --> B[Accessible from outside]
+    end
+    subgraph "127.0.0.1:3000"
+        C[Localhost only] --> D[Only accessible from\nthe server itself]
+    end
 ```
 
 **For backend services behind Nginx:** Bind to `127.0.0.1` — Nginx handles public traffic and proxies to localhost.
@@ -87,21 +92,22 @@ nc -zv server-ip 80
 
 DNS translates domain names to IP addresses.
 
-```
-myapp.com → DNS lookup → 203.0.113.50
+```mermaid
+flowchart LR
+    A[myapp.com] -->|DNS lookup| B[203.0.113.50]
 ```
 
 ### How DNS resolution works
 
-```
-Browser: "What's the IP for myapp.com?"
-    → Local DNS cache
-    → Router DNS
-    → ISP DNS
-    → Root DNS servers
-    → .com TLD servers
-    → myapp.com's authoritative nameserver
-    → Returns: 203.0.113.50
+```mermaid
+flowchart TD
+    A["Browser: What's the IP\nfor myapp.com?"] --> B[Local DNS cache]
+    B --> C[Router DNS]
+    C --> D[ISP DNS]
+    D --> E[Root DNS servers]
+    E --> F[.com TLD servers]
+    F --> G["myapp.com's authoritative\nnameserver"]
+    G --> H["Returns: 203.0.113.50"]
 ```
 
 ### DNS Record Types

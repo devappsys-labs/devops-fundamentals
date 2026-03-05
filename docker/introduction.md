@@ -21,25 +21,30 @@ A container is like a lightweight, isolated virtual machine — but it shares th
 
 ## Docker vs Virtual Machines
 
+```mermaid
+block-beta
+    columns 2
+    block:vm:1["Virtual Machines"]
+        columns 2
+        appA1["App A"] appB1["App B"]
+        libsA1["Libs"] libsB1["Libs"]
+        guestA["Guest OS"] guestB["Guest OS"]
+    end
+    block:docker:1["Docker Containers"]
+        columns 2
+        appA2["App A"] appB2["App B"]
+        libsA2["Libs"] libsB2["Libs"]
+    end
+    hypervisor["Hypervisor"]:1
+    engine["Docker Engine"]:1
+    hostOS1["Host OS"]:1
+    hostOS2["Host OS"]:1
+    hw1["Hardware"]:1
+    hw2["Hardware"]:1
 ```
-Virtual Machines:              Docker Containers:
-┌─────────┐ ┌─────────┐      ┌─────────┐ ┌─────────┐
-│  App A  │ │  App B  │      │  App A  │ │  App B  │
-├─────────┤ ├─────────┤      ├─────────┤ ├─────────┤
-│  Libs   │ │  Libs   │      │  Libs   │ │  Libs   │
-├─────────┤ ├─────────┤      └────┬────┘ └────┬────┘
-│ Guest OS│ │ Guest OS│           │            │
-├─────────┤ ├─────────┤      ┌───┴────────────┴───┐
-│    Hypervisor       │      │   Docker Engine     │
-├─────────────────────┤      ├─────────────────────┤
-│      Host OS        │      │      Host OS        │
-├─────────────────────┤      ├─────────────────────┤
-│     Hardware        │      │     Hardware        │
-└─────────────────────┘      └─────────────────────┘
 
-VM: Full OS per app (~GB)     Container: Shared kernel (~MB)
-Boot time: minutes            Start time: seconds
-```
+> **VM:** Full OS per app (~GB), Boot time: minutes
+> **Container:** Shared kernel (~MB), Start time: seconds
 
 ## Core Concepts
 
@@ -57,13 +62,12 @@ Images are built from a `Dockerfile` and stored in registries (Docker Hub, GHCR)
 
 A **running instance** of an image. You can run multiple containers from the same image.
 
+```mermaid
+flowchart LR
+    A["Image (blueprint)"] --> B["Container (running instance)"]
 ```
-Image (blueprint) → Container (running instance)
 
-Like:
-Class → Object
-Recipe → Dish
-```
+Like: Class → Object, Recipe → Dish
 
 ### Registry
 
@@ -123,13 +127,13 @@ docker rm my-nginx
 
 ## Docker Workflow
 
-```
-1. Write a Dockerfile
-2. Build an image:     docker build -t myapp .
-3. Run a container:    docker run -d -p 3000:3000 myapp
-4. Push to registry:   docker push myuser/myapp
-5. Pull on server:     docker pull myuser/myapp
-6. Run on server:      docker run -d -p 3000:3000 myuser/myapp
+```mermaid
+flowchart LR
+    A[Write Dockerfile] --> B[Build Image\ndocker build -t myapp .]
+    B --> C[Run Container\ndocker run -d -p 3000:3000 myapp]
+    C --> D[Push to Registry\ndocker push myuser/myapp]
+    D --> E[Pull on Server\ndocker pull myuser/myapp]
+    E --> F[Run on Server\ndocker run -d -p 3000:3000 myuser/myapp]
 ```
 
 ---

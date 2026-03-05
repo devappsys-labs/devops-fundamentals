@@ -6,11 +6,9 @@ Examples: plain HTML/CSS/JS sites, React (CRA/Vite), Angular, Vue.
 
 ## How CSR Works
 
-```
-Browser requests myapp.com
-    → Nginx serves index.html + bundle.js
-        → Browser executes JavaScript
-            → JavaScript renders the UI
+```mermaid
+flowchart LR
+    A[Browser requests\nmyapp.com] --> B[Nginx serves\nindex.html + bundle.js] --> C[Browser executes\nJavaScript] --> D[JavaScript\nrenders the UI]
 ```
 
 The server does no processing. It's just a file server.

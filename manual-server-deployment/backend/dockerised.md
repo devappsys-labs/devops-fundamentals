@@ -4,8 +4,9 @@ This covers containerising backend services and running them with Nginx as a rev
 
 ## The Pattern
 
-```
-Internet → Host Nginx (port 80/443) → Docker Container (port 8080)
+```mermaid
+flowchart LR
+    A[Internet] --> B["Host Nginx\n(port 80/443)"] --> C["Docker Container\n(port 8080)"]
 ```
 
 Your backend runs inside a Docker container. Host Nginx handles SSL and public traffic.

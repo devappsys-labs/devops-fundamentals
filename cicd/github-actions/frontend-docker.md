@@ -13,8 +13,9 @@ Automate building Docker images of your frontend app and deploying containers to
 
 The simplest approach — push code, server pulls and builds the image locally.
 
-```
-Push to main → GitHub Actions SSHes into server → Server pulls code, builds image, restarts container
+```mermaid
+flowchart LR
+    A[Push to main] --> B[GitHub Actions\nSSHes into server] --> C[Server pulls code,\nbuilds image,\nrestarts container]
 ```
 
 ### React / Angular — deploy.yml
@@ -68,8 +69,9 @@ jobs:
 
 Build the image on the GitHub Actions runner, push to a container registry, then pull on the server. Better for production.
 
-```
-Push to main → Runner builds image → Push to registry → Server pulls image → Restart container
+```mermaid
+flowchart LR
+    A[Push to main] --> B[Runner builds image] --> C[Push to registry] --> D[Server pulls image] --> E[Restart container]
 ```
 
 ### Using GitHub Container Registry (GHCR)

@@ -6,8 +6,9 @@ This covers deploying backend services directly on a server (no Docker) with Ngi
 
 Regardless of language, the deployment pattern is the same:
 
-```
-Internet → Nginx (port 80/443) → proxy_pass → Your app (localhost:8080)
+```mermaid
+flowchart LR
+    A[Internet] --> B["Nginx\n(port 80/443)"] -->|proxy_pass| C["Your app\n(localhost:8080)"]
 ```
 
 1. Get your app running on a local port

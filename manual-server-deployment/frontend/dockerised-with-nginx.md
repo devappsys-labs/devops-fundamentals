@@ -139,8 +139,9 @@ The `nginx.conf` is the same as for React (SPA fallback to `index.html`).
 
 In production, you typically have **Nginx on the host** in front of the **Nginx inside Docker**:
 
-```
-Internet → Host Nginx (port 80/443, SSL) → Docker Container (port 3000 → internal 80)
+```mermaid
+flowchart LR
+    A[Internet] --> B["Host Nginx\n(port 80/443, SSL)"] --> C["Docker Container\n(port 3000 → internal 80)"]
 ```
 
 ### Host Nginx config
