@@ -16,9 +16,15 @@ This documentation is structured to help freshers understand how things work und
 
 ## Table of Contents
 
+### Server Setup
+
+Start here — the first thing you do on a fresh server.
+
+- [Ubuntu Server Setup & User Creation](server-setup/ubuntu-server-setup.md) — Initial setup, system config, deploy user, SSH keys, firewall
+
 ### Linux Fundamentals
 
-Start here if you're new to Linux servers.
+Once your server is running, learn the Linux foundations.
 
 - [Users, Groups & Permissions](linux-fundamentals/users-and-permissions.md) — Users, groups, sudo, chmod, chown
 - [File System](linux-fundamentals/file-system.md) — Directory structure, essential commands, pipes, processes

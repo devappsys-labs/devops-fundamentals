@@ -22,25 +22,21 @@ A container is like a lightweight, isolated virtual machine — but it shares th
 ## Docker vs Virtual Machines
 
 ```mermaid
-block-beta
-    columns 2
-    block:vm:1["Virtual Machines"]
-        columns 2
-        appA1["App A"] appB1["App B"]
-        libsA1["Libs"] libsB1["Libs"]
-        guestA["Guest OS"] guestB["Guest OS"]
+flowchart TD
+    subgraph VM["Virtual Machines"]
+        direction TB
+        appA1["App A + Libs"] --- guestA["Guest OS"]
+        appB1["App B + Libs"] --- guestB["Guest OS"]
+        guestA --- hypervisor["Hypervisor"]
+        guestB --- hypervisor
     end
-    block:docker:1["Docker Containers"]
-        columns 2
-        appA2["App A"] appB2["App B"]
-        libsA2["Libs"] libsB2["Libs"]
+    subgraph Docker["Docker Containers"]
+        direction TB
+        appA2["App A + Libs"] --- engine["Docker Engine"]
+        appB2["App B + Libs"] --- engine
     end
-    hypervisor["Hypervisor"]:1
-    engine["Docker Engine"]:1
-    hostOS1["Host OS"]:1
-    hostOS2["Host OS"]:1
-    hw1["Hardware"]:1
-    hw2["Hardware"]:1
+    hypervisor --- hostOS1["Host OS + Hardware"]
+    engine --- hostOS2["Host OS + Hardware"]
 ```
 
 > **VM:** Full OS per app (~GB), Boot time: minutes
