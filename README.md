@@ -102,6 +102,12 @@ Automate the deployment workflows above using GitHub Actions.
 - [Backend CI/CD](cicd/github-actions/backend.md) — Deploying compiled and interpreted services without Docker
 - [Backend CI/CD with Docker](cicd/github-actions/backend-docker.md) — Building and deploying containerised backends with registry
 
+### Identity Management
+
+Centralized user, group, and SSH key management across your server fleet.
+
+- [Centralized Identity with Keycloak](identity-management/keycloak-centralized-identity.md) — Keycloak as IDP, OpenLDAP, SSSD on Ubuntu, SSH keys from LDAP, group-based access control
+
 ### Security
 
 Protect your server and applications.
