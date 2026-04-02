@@ -106,7 +106,7 @@ Automate the deployment workflows above using GitHub Actions.
 
 Centralized user, group, and SSH key management across your server fleet.
 
-- [Centralized Identity with Keycloak](identity-management/keycloak-centralized-identity.md) — Keycloak as IDP, OpenLDAP, SSSD on Ubuntu, SSH keys from LDAP, group-based access control
+- [Centralized Identity with Authentik](identity-management/authentik-centralized-identity.md) — Authentik as IDP with built-in LDAP outpost, SSSD on Ubuntu, SSH keys from LDAP, group-based access control
 
 ### Security
 
